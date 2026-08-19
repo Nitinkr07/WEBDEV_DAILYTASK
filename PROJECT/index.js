@@ -1,41 +1,33 @@
-const express = require("express");
-const app = express();
-app.use(express.json());
-
-const packages = require("./data/tour")
-
+const packages = require("./data/tour");
 app.get("/", (req, res) => {
-    res.send("Hello, World!");
+    res.send("Hello World");
 });
+
 app.get("/packages", (req, res) => {
     const destination = req.query.destination;
-    if(!destination){
+    if(!destination) {
         res.json(packages);
-    } 
-    const filteredPackages = packages.filter((pkg) => pkg.destination.toLocaleLowerCase === destination.toLocaleLowerCase);
+    }
+    const filteredPackages = packages.filter((pkg) => pkg.destination.toLowerCase() === destination.toLowerCase());
     res.json(filteredPackages);
-    // res.json(destination);
-    // res.json(packages);
+    
 });
 
 app.get("/packages/:id", (req, res) => {
     const packageId = parseInt(req.params.id);
-    const tourpackage = packages.find((pkg) => pkg.id === packageId);
-    // res.send(tourpackage);
-    res.status(201).json(tourpackage);
-}); 
+    const tourPackage = packages.find((pkg) => pkg.id === packageId);
+    res.send(tourPackage);
+    res.status(200).send(tourPackage);
+});    
 
 app.post("/packages", (req, res) => {
-
     const newPackage = req.body;
-
-    packages.push(newPackage);
-
-    res.status(201).json(newPackage);
-
-}); 
-
+    res.json(newPackage);
+    // packages.push(newPackage);
+    // res.status(201).send(newPackage);
+});
+app.use("/api", tourRoutes);
 
 app.listen(3000, () => {
-    console.log("Server is running on port 3000")
-});           
+    console.log("Server is running on port 3000");
+});
