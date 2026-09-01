@@ -34,4 +34,4 @@ const packages = [
     }
 ]  
 
-module.exports = packages;  
+module.exports = packages;
