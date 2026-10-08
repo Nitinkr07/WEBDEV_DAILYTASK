@@ -45,20 +45,47 @@
 // const PORT = process.env.PORT;
 // console.log(PORT);
 
-const http = require('http');
+// const http = require('http');
+// const PORT = process.env.PORT || 3000;
+
+
+
+// const server = http.createServer((req, res) => {
+//   if (req.url === '/') {
+//   res.writeHead(200, { 'Content-Type': 'text/plain' });
+//   res.write('<h1>Hello, World!</h1>');
+//   res.write('<p>This is a simple HTTP server using Node.js.');
+//   res.write('Environment variable PORT : ' + PORT);
+//   }
+//   else if(req.url === '/about') { 
+//     res.writeHead(200, { 'Content-Type': 'text/html' });
+//     res.write('<h1>About Us</h1>');
+//     res.end();      
+
+//   }else {
+//     res.writeHead(404, { 'Content-Type': 'text/html' });
+//     res.write('<h1>404 Not Found</h1>');
+//     res.end();
+//   }
+// });
+// server.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+const express = require('express');
+const app = express();
 const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write('Hello, World!\n');
-    res.write('<h1>Welcome to my server</h1>');
-    res.write('<p>This is a simple HTTP server created using Node.js.</p>');
-    res.write('<p>Current Date and Time: ' + new Date().toLocaleString() + '</p>');
-    res.write('<p>Request Method: ' + req.method + '</p>');
-    res.write('<p>Request URL: ' + req.url + '</p>');
-    res.end();
+app.get('/', (req, res) => {
+  console.log(req.query);
+  res.send('<h1>Hello, World!</h1><p>This is a simple Express server using Node.js.</p>');
 });
 
-server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// app.get('/about', (req, res) => {
+//   console.log(req.method, req.url, req.headers, req.query, req.params);
+//   res.send('<h1>About Us</h1><p>This is the about page.</p>');
+// });
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

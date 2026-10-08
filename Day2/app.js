@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // const fs = require('fs');
 // const data = fs.readFileSync('notes.txt', 'utf-8');
 // console.log(data);
@@ -18,9 +18,7 @@
 // const package = require('./data/package');
 // console.log(package);   
 
-require('dotenv').config();
-const process = require('process');
-=======
+
 // const fs = require('fs');
 // const data = fs.readFileSync('notes.txt', 'utf-8');
 // console.log(data);
@@ -40,7 +38,3 @@ const process = require('process');
 // const package = require('./data/package');
 // console.log(package);   
 
-require('dotenv').config();
-const process = require('process');
->>>>>>> 47935ed (Add Web Dev III)
-console.log(process.env.PORT);
